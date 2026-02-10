@@ -4,7 +4,6 @@ from enum import Enum
 from pathlib import Path
 from dotenv import load_dotenv
 
-# Загружаем переменные из .env файла (ищем в корне проекта)
 _env_path = Path(__file__).parent.parent / ".env"
 load_dotenv(_env_path)
 

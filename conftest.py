@@ -14,7 +14,6 @@ def pytest_addoption(parser):
 
 @pytest.fixture(scope="session")
 def env(request) -> Environment:
-    """Фикстура для получения текущего окружения"""
     env_name = request.config.getoption("--env")
     try:
         return Environment(env_name.lower())
@@ -27,7 +26,6 @@ def env(request) -> Environment:
 
 @pytest.fixture(scope="session")
 def env_config(env) -> EnvironmentConfig:
-    """Фикстура для получения конфигурации текущего окружения"""
     print(f"\nОкружение: {env}")
     print(f"{environments[env]}\n")
     return environments[env]

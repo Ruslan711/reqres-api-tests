@@ -5,10 +5,6 @@ class CreateUser(BaseAPI):
 
     def __init__(self, env_config):
         super().__init__(base_url=env_config.reqres_url, api_key=env_config.reqres_api_key)
-        """
-        Args:
-            env_config (EnvironmentConfig): Конфигурация окружения из фикстуры
-        """
 
     def create_user(self, name: str, job: str):
         """Создание нового пользователя.
