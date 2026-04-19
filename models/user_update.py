@@ -1,23 +1,22 @@
-from pydantic import BaseModel, Field, validator
-from typing import Optional
 from datetime import datetime
+from typing import Optional
 
+from pydantic import BaseModel, Field, field_validator
 
 class UpdateUserRequest(BaseModel):
+
     name: Optional[str] = Field(min_length=2)
     job: Optional[str] = Field(min_length=2)
 
-    @validator("name")
-    def validate_name(cls, value):
-        if value is not None and not value.strip():
-            raise ValueError("короткое имя")
-        return value
-
-    @validator("job")
-    def validate_job(cls, value):
-        if value is not None and not value.strip():
-            raise ValueError("короткое название работы")
-        return value
+    @field_validator("name", "job")
+    @classmethod
+    def strip_and_validate(cls, value: Optional[str]) -> Optional[str]:
+        if value is None:
+            return value
+        stripped = value.strip()
+        if not stripped:
+            raise ValueError("field cannot be empty")
+        return stripped
 
 
 class UpdateUserResponse(BaseModel):
