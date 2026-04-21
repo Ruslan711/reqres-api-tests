@@ -4,7 +4,10 @@ import os
 
 
 HEADERS = {
-    "x-api-key": "pub_2f34b8e56d29a23cae45fec15742468240ee46b2b59b965084aae7563daa6e3b"
+    "x-api-key": os.getenv(
+        "REQRES_API_KEY",
+        "pub_2f34b8e56d29a23cae45fec15742468240ee46b2b59b965084aae7563daa6e3b"
+    )
 }
 
 
@@ -14,9 +17,6 @@ def test_get_user_list():
         "https://reqres.in/api/users?page=2",
         headers=HEADERS
     )
-
-    if response.status_code == 401:
-        pytest.skip("нет доступа к API (401)")
 
     assert response.status_code == 200
     assert "data" in response.json()
@@ -35,9 +35,6 @@ def test_create_user():
         headers=HEADERS
     )
 
-    if response.status_code == 401:
-        pytest.skip("нет доступа к API (401)")
-
     assert response.status_code in [200, 201]
     assert response.json()["name"] == payload["name"]
 
@@ -45,7 +42,7 @@ def test_create_user():
 @pytest.mark.regression
 def test_update_user():
     if not os.getenv("UPDATE_TESTS"):
-        pytest.skip("переменная не задана UPDATE_TESTS")
+        pytest.skip("переменная UPDATE_TESTS не задана")
 
     payload = {
         "name": "Ruslan",
@@ -57,9 +54,6 @@ def test_update_user():
         json=payload,
         headers=HEADERS
     )
-
-    if response.status_code == 401:
-        pytest.skip("нет доступа к API (401)")
 
     assert response.status_code == 200
     assert response.json()["name"] == payload["name"]
