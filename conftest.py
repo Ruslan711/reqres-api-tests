@@ -7,25 +7,34 @@ def pytest_addoption(parser):
     parser.addoption(
         "--env",
         action="store",
-        default="stage",
-        help="Окружение для запуска тестов (dev/stage)"
+        default="stage"
     )
 
 
 @pytest.fixture(scope="session")
 def env(request) -> Environment:
-    env_name = request.config.getoption("--env")
-    try:
-        return Environment(env_name.lower())
-    except ValueError:
-        raise ValueError(
-            f"Некорректное окружение: {env_name}. "
-            f"Используйте одно из: dev/stage/prod"
-        )
+    return Environment(request.config.getoption("--env").lower())
 
 
 @pytest.fixture(scope="session")
 def env_config(env) -> EnvironmentConfig:
-    print(f"\nОкружение: {env}")
-    print(f"{environments[env]}\n")
     return environments[env]
+
+
+@pytest.fixture(scope="function")
+def user_data():
+    return {"id": None}
+
+
+@pytest.fixture(scope="function")
+def created_users(env_config):
+    ids = []
+    yield ids
+
+    from services.reqres_in.users.delete_user import DeleteUser
+
+    for user_id in ids:
+        try:
+            DeleteUser(env_config).delete(user_id)
+        except Exception as e:
+            print("Delete error:", e)

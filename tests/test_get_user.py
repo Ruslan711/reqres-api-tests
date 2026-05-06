@@ -1,9 +1,9 @@
-from services.reqres_in.users.get_user import GetUser
+from services.reqres_in.users.get_users import GetUsers
 
 
-def test_get_user(env_config):
-    user_id = 2
+def test_get_users(env_config):
 
-    response = GetUser(env_config).get_user(user_id)
+    response, users = GetUsers(env_config).get_users(page=1)
+
     assert response.status_code == 200
-    assert response.json()["data"]["id"] == user_id
+    assert users.page == 1

@@ -1,14 +1,17 @@
 import requests
 
-class BaseAPI:
 
+class BaseAPI:
     def __init__(self, base_url: str, api_key: str = ""):
         self.base_url = base_url
         self.session = requests.Session()
+
         headers = {
             "Content-Type": "application/json",
             "Accept": "application/json",
         }
+
         if api_key:
             headers["x-api-key"] = api_key
+
         self.session.headers.update(headers)
