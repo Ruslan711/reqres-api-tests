@@ -10,7 +10,7 @@ class GetUser(BaseAPI):
             api_key=env_config.reqres_api_key
         )
 
-    def get_user(self, user_id: int):
+    def get_user(self, user_id: int, validate: bool = True):
         """Получение пользователя по ID.
 
         Args:
@@ -25,7 +25,7 @@ class GetUser(BaseAPI):
         )
 
         parsed = None
-        if response.status_code == 200:
+        if validate and response.status_code == 200:
             parsed = SingleUserResponse.model_validate(response.json())
 
         return response, parsed

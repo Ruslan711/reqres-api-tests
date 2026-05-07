@@ -4,7 +4,7 @@ import pytest
 from utils.helper import Helper
 from services.reqres_in.resources.get_resources import GetResources
 from services.reqres_in.resources.get_resource import GetResource
-from services.reqres_in.users.models.resource import (
+from services.reqres_in.resources.models.resource import (
     ResourcesListResponse,
     SingleResourceResponse,
 )
@@ -18,7 +18,7 @@ def test_get_resources_list(env_config):
     helper = Helper()
 
     with allure.step("Запрашиваю список ресурсов"):
-        response, resources = GetResources(env_config).get_resources(page=1)
+        response, resources = GetResources(env_config).get_resources(page=2)
         helper.attach_response(response)
 
     with allure.step("Проверяю статус-код ответа"):
@@ -34,7 +34,7 @@ def test_get_resources_list(env_config):
 
 
 @allure.feature("Resources")
-@allure.title("Получениее одного ресурса по ID")
+@allure.title("Получение одного ресурса по ID")
 @allure.testcase("https://example.com/tc-get-resource", "TC-GET-RESOURCE")
 @pytest.mark.regression
 def test_get_single_resource(env_config):

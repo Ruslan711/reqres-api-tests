@@ -45,6 +45,6 @@ class UpdateUserRequest(BaseModel):
 
 
 class UpdateUserResponse(BaseModel):
-    name: str
-    job: str
-    updatedAt: datetime
+    name: Optional[str] = None
+    job: Optional[str] = None
+    updatedAt: str

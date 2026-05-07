@@ -2,7 +2,7 @@ from services.base_api import BaseAPI
 from services.reqres_in.users.models.user import UpdateUserRequest, UpdateUserResponse
 
 
-class UpdateUser(BaseAPI):
+class UpdateUserPatch(BaseAPI):
 
     def __init__(self, env_config):
         super().__init__(
@@ -15,7 +15,7 @@ class UpdateUser(BaseAPI):
 
         Args:
             user_id (int): ID пользователя
-            request (UpdateUserRequest): данные для обновления
+            request (UpdateUserRequest): данные для частичного обновления
             validate (bool): валидировать ли ответ через Pydantic
         """
 
@@ -25,7 +25,7 @@ class UpdateUser(BaseAPI):
         )
 
         parsed = None
-        if validate:
+        if validate and response.status_code == 200:
             parsed = UpdateUserResponse.model_validate(response.json())
 
         return response, parsed

@@ -25,3 +25,4 @@ class RegisterUser(BaseAPI):
                 parsed_error = ErrorResponse.model_validate(response.json())
 
         return response, parsed_success, parsed_error
+

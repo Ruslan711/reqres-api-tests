@@ -1,5 +1,5 @@
 from services.base_api import BaseAPI
-from services.reqres_in.users.models.resource import ResourcesListResponse
+from services.reqres_in.resources.models.resource import ResourcesListResponse
 
 
 class GetResources(BaseAPI):
@@ -13,7 +13,7 @@ class GetResources(BaseAPI):
         response = self.session.get(url, params=params)
 
         parsed = None
-        if validate:
+        if validate and response.status_code == 200:
             parsed = ResourcesListResponse.model_validate(response.json())
 
         return response, parsed

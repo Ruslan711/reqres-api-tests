@@ -24,7 +24,7 @@ class CreateUser(BaseAPI):
         )
 
         parsed = None
-        if validate:
+        if validate and response.status_code in (200, 201):
             parsed = CreateUserResponse.model_validate(response.json())
 
         return response, parsed

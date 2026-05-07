@@ -51,5 +51,7 @@ Thumbs.db
 
 # Python virtualenv and test reports
 venv/
-.venv/
+.env
+__pycache__/
+.idea/
 allure-results/

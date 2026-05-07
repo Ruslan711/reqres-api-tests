@@ -1,5 +1,5 @@
 from services.base_api import BaseAPI
-from services.reqres_in.users.models.resource import SingleResourceResponse
+from services.reqres_in.resources.models.resource import SingleResourceResponse
 
 
 class GetResource(BaseAPI):

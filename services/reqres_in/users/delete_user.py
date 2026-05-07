@@ -25,3 +25,4 @@ class DeleteUser(BaseAPI):
         )
 
         return response
+

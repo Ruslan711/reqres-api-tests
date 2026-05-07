@@ -17,7 +17,7 @@ class GetUsers(BaseAPI):
         response = self.session.get(url, params=params)
 
         parsed = None
-        if validate:
+        if validate and response.status_code == 200:
             parsed = UsersListResponse.model_validate(response.json())
 
         return response, parsed

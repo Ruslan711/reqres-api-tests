@@ -1,5 +1,6 @@
 import pytest
 
+from services.reqres_in.users.delete_user import DeleteUser
 from config.environments import Environment, environments, EnvironmentConfig
 
 
@@ -27,11 +28,10 @@ def user_data():
 
 
 @pytest.fixture(scope="function")
-def created_users(env_config):
+def delete_user(env_config):
     ids = []
-    yield ids
 
-    from services.reqres_in.users.delete_user import DeleteUser
+    yield ids
 
     for user_id in ids:
         try:
