@@ -18,7 +18,7 @@ def test_get_resources_list(env_config):
     helper = Helper()
 
     with allure.step("Запрашиваю список ресурсов"):
-        response, resources = GetResources(env_config).get_resources(page=2)
+        response, resources = GetResources(env_config).get_resources(page=1)
         helper.attach_response(response)
 
     with allure.step("Проверяю статус-код ответа"):

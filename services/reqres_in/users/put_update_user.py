@@ -17,7 +17,7 @@ class UpdateUserPut(BaseAPI):
         )
 
         parsed = None
-        if validate:
+        if validate and response.status_code == 200:
             parsed = UpdateUserResponse.model_validate(response.json())
 
         return response, parsed
