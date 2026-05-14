@@ -1,26 +1,20 @@
 from services.base_api import BaseAPI
-from services.reqres_in.users.models.user import CreateUserResponse
+from services.reqres_in.users.models.user import CreateUserRequest, CreateUserResponse
 
 
 class CreateUser(BaseAPI):
-
     def __init__(self, env_config):
         super().__init__(
             base_url=env_config.reqres_url,
-            api_key=env_config.reqres_api_key
+            api_key=env_config.reqres_api_key,
         )
 
-    def create_user(self, name: str, job: str, validate: bool = True):
-        """Создание нового пользователя.
-
-        Args:
-            name (str): Имя пользователя
-            job (str): Должность пользователя
-        """
+    def create_user(self, request: CreateUserRequest, validate: bool = True):
+        """Создание нового пользователя."""
 
         response = self.session.post(
             f"{self.base_url}/users",
-            json={"name": name, "job": job}
+            json=request.model_dump(),
         )
 
         parsed = None

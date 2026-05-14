@@ -1,7 +1,7 @@
 import allure
 import pytest
 
-from utils.helper import Helper
+from utils.helper import attach_response
 from services.reqres_in.resources.get_resources import GetResources
 from services.reqres_in.resources.get_resource import GetResource
 from services.reqres_in.resources.models.resource import (
@@ -15,11 +15,9 @@ from services.reqres_in.resources.models.resource import (
 @allure.testcase("https://example.com/tc-get-resources-list", "TC-GET-RESOURCES-LIST")
 @pytest.mark.regression
 def test_get_resources_list(env_config):
-    helper = Helper()
-
     with allure.step("Запрашиваю список ресурсов"):
         response, resources = GetResources(env_config).get_resources(page=1)
-        helper.attach_response(response)
+        attach_response(response)
 
     with allure.step("Проверяю статус-код ответа"):
         assert response.status_code == 200
@@ -38,11 +36,9 @@ def test_get_resources_list(env_config):
 @allure.testcase("https://example.com/tc-get-resource", "TC-GET-RESOURCE")
 @pytest.mark.regression
 def test_get_single_resource(env_config):
-    helper = Helper()
-
     with allure.step("Запрашиваем ресурс с ID = 2"):
         response, resource = GetResource(env_config).get_resource(resource_id=2)
-        helper.attach_response(response)
+        attach_response(response)
 
     with allure.step("Проверяем статус-код ответа"):
         assert response.status_code == 200
@@ -58,11 +54,9 @@ def test_get_single_resource(env_config):
 @allure.testcase("https://example.com/tc-get-resource-404", "TC-GET-RESOURCE-404")
 @pytest.mark.regression
 def test_get_resource_not_found(env_config):
-    helper = Helper()
-
     with allure.step("Запрашиваем несуществующий ресурс"):
         response, resource = GetResource(env_config).get_resource(resource_id=23)
-        helper.attach_response(response)
+        attach_response(response)
 
     with allure.step("Проверяем статус-код 404"):
         assert response.status_code == 404

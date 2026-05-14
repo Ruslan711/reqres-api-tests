@@ -5,6 +5,7 @@ from pydantic import BaseModel, Field
 
 from services.reqres_in.common.models.support import Support
 
+
 class UserData(BaseModel):
     id: int
     email: str
@@ -40,8 +41,8 @@ class CreateUserResponse(BaseModel):
 
 
 class UpdateUserRequest(BaseModel):
-    name: Optional[str] = Field(default=None, min_length=2)
-    job: Optional[str] = Field(default=None, min_length=2)
+    name: Optional[str] = None
+    job: Optional[str] = None
 
 
 class UpdateUserResponse(BaseModel):
