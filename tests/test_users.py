@@ -196,7 +196,7 @@ def test_update_user_patch(env_config, delete_user):
 @allure.title("Удаление пользователя")
 @allure.testcase("https://example.com/tc-delete-user", "TC-DELETE-USER")
 @pytest.mark.regression
-def test_delete_user(env_config, delete_user):
+def test_delete_user(env_config):
     create_request = CreateUserRequest(
         name="morpheus",
         job="leader",
@@ -213,8 +213,6 @@ def test_delete_user(env_config, delete_user):
         assert isinstance(created, CreateUserResponse)
         assert created.id is not None
 
-    delete_user.append(created.id)
-
     with allure.step("Удаляю пользователя"):
         delete_response = DeleteUser(env_config).delete(user_id=created.id)
         attach_response(delete_response)
@@ -225,5 +223,6 @@ def test_delete_user(env_config, delete_user):
     with allure.step("Проверяю, что пользователь больше не существует"):
         get_response, user = GetUser(env_config).get_user(user_id=created.id)
         attach_response(get_response)
+
         assert get_response.status_code == 404
         assert user is None
