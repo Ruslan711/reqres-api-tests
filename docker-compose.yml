@@ -1,0 +1,8 @@
+services:
+  tests:
+    build: .
+    environment:
+      REQRES_API_KEY: ${REQRES_API_KEY}
+    volumes:
+      - ./allure-results:/app/allure-results
+      - ./allure-report:/app/allure-report
