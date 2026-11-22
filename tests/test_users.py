@@ -20,7 +20,6 @@ from services.reqres_in.users.models.user import (
 
 @allure.feature("Users")
 @allure.title("Получение списка пользователей")
-@allure.testcase("https://example.com/tc-get-users", "TC-GET-USERS")
 @pytest.mark.regression
 def test_get_users_list(env_config):
     with allure.step("Отправляю запрос на список пользователей page=2"):
@@ -41,7 +40,6 @@ def test_get_users_list(env_config):
 
 @allure.feature("Users")
 @allure.title("Получение одного пользователя по ID")
-@allure.testcase("https://example.com/tc-get-user", "TC-GET-USER")
 @pytest.mark.smoke
 @pytest.mark.regression
 def test_get_single_user(env_config):
@@ -61,7 +59,6 @@ def test_get_single_user(env_config):
 
 @allure.feature("Users")
 @allure.title("Получение несуществующего пользователя")
-@allure.testcase("https://example.com/tc-get-user-404", "TC-GET-USER-404")
 @pytest.mark.regression
 def test_get_user_not_found(env_config):
     with allure.step("Запрашиваю несуществующего пользователя"):
@@ -77,7 +74,6 @@ def test_get_user_not_found(env_config):
 
 @allure.feature("Users")
 @allure.title("Создание пользователя")
-@allure.testcase("https://example.com/tc-create-user", "TC-CREATE-USER")
 @pytest.mark.smoke
 @pytest.mark.regression
 def test_create_user(env_config, delete_user):
@@ -107,7 +103,6 @@ def test_create_user(env_config, delete_user):
 
 @allure.feature("Users")
 @allure.title("Обновление пользователя PUT")
-@allure.testcase("https://example.com/tc-update-user-put", "TC-UPDATE-USER-PUT")
 @pytest.mark.regression
 def test_update_user_put(env_config, delete_user):
     create_request = CreateUserRequest(
@@ -151,7 +146,6 @@ def test_update_user_put(env_config, delete_user):
 
 @allure.feature("Users")
 @allure.title("Обновление пользователя PATCH")
-@allure.testcase("https://example.com/tc-update-user-patch", "TC-UPDATE-USER-PATCH")
 @pytest.mark.regression
 def test_update_user_patch(env_config, delete_user):
     create_request = CreateUserRequest(
@@ -194,7 +188,6 @@ def test_update_user_patch(env_config, delete_user):
 
 @allure.feature("Users")
 @allure.title("Удаление пользователя")
-@allure.testcase("https://example.com/tc-delete-user", "TC-DELETE-USER")
 @pytest.mark.regression
 def test_delete_user(env_config):
     create_request = CreateUserRequest(

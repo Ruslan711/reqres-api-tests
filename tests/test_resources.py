@@ -12,7 +12,6 @@ from services.reqres_in.resources.models.resource import (
 
 @allure.feature("Resources")
 @allure.title("Получаю список ресурсов")
-@allure.testcase("https://example.com/tc-get-resources-list", "TC-GET-RESOURCES-LIST")
 @pytest.mark.regression
 def test_get_resources_list(env_config):
     with allure.step("Запрашиваю список ресурсов"):
@@ -33,7 +32,6 @@ def test_get_resources_list(env_config):
 
 @allure.feature("Resources")
 @allure.title("Получение одного ресурса по ID")
-@allure.testcase("https://example.com/tc-get-resource", "TC-GET-RESOURCE")
 @pytest.mark.regression
 def test_get_single_resource(env_config):
     with allure.step("Запрашиваем ресурс с ID = 2"):
@@ -51,7 +49,6 @@ def test_get_single_resource(env_config):
 
 @allure.feature("Resources")
 @allure.title("Получение несуществующего ресурса")
-@allure.testcase("https://example.com/tc-get-resource-404", "TC-GET-RESOURCE-404")
 @pytest.mark.regression
 def test_get_resource_not_found(env_config):
     with allure.step("Запрашиваем несуществующий ресурс"):

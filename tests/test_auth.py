@@ -15,7 +15,6 @@ from services.reqres_in.auth.login_user import LoginUser
 
 @allure.feature("Authentication")
 @allure.title("Успешная регистрация пользователя")
-@allure.testcase("https://example.com/tc-register-success", "TC-REGISTER-SUCCESS")
 @pytest.mark.smoke
 @pytest.mark.regression
 def test_register_success(env_config):
@@ -37,7 +36,6 @@ def test_register_success(env_config):
 
 @allure.feature("Authentication")
 @allure.title("Неуспешная регистрация без пароля")
-@allure.testcase("https://example.com/tc-register-fail", "TC-REGISTER-FAIL")
 @pytest.mark.regression
 def test_register_missing_password(env_config):
     request = RegisterRequest(
@@ -58,7 +56,6 @@ def test_register_missing_password(env_config):
 
 @allure.feature("Authentication")
 @allure.title("Успешный вход пользователя")
-@allure.testcase("https://example.com/tc-login-success", "TC-LOGIN-SUCCESS")
 @pytest.mark.smoke
 @pytest.mark.regression
 def test_login_success(env_config):
@@ -79,7 +76,6 @@ def test_login_success(env_config):
 
 @allure.feature("Authentication")
 @allure.title("Неуспешный вход без пароля")
-@allure.testcase("https://example.com/tc-login-fail", "TC-LOGIN-FAIL")
 @pytest.mark.regression
 def test_login_missing_password(env_config):
     request = LoginRequest(

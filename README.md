@@ -18,13 +18,14 @@
 - Pydantic (валидация моделей)
 - Requests (HTTP-клиент)
 - Faker (генерация тестовых данных)
+- Docker
 
 ## Установка и запуск
 
 ```bash
 # Клонировать репозиторий
-git clone <repository-url>
-cd task-423
+git clone https://github.com/Ruslan711/reqres-api-tests.git
+cd reqres-api-tests
 
 # Создать виртуальное окружение
 python -m venv venv
@@ -72,4 +73,4 @@ Docker Desktop должен быть запущен.
 docker compose up --build
 ```
 
-Тесты запускаются в headless-режиме. Отчёт сохраняется в папку `allure-results`.
+Отчёт сохраняется в папку `allure-results`.
